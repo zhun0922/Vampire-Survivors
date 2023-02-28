@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     public Vector2 inputVec;
     Rigidbody2D rigid;
     SpriteRenderer spriter;
-    
+    Animator anim;
+
+
     public float speed = 3;
 
     private void Awake()
@@ -16,6 +18,7 @@ public class Player : MonoBehaviour
         speed = 3;
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
+        anim= GetComponent<Animator>();
     }
   
     private void FixedUpdate()
@@ -40,5 +43,7 @@ public class Player : MonoBehaviour
             //라고 쓰는게 맞지만 조건식을 그대로 넣어주자
             spriter.flipX = inputVec.x < 0; //우측 항의 조건식은 true이고, 이 값이 그대로 flipX에 적용된다
         }
+
+       
     }
 }
