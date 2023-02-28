@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     SpriteRenderer spriter;
     Animator anim;
 
-
     public float speed = 3;
 
     private void Awake()
@@ -18,32 +17,34 @@ public class Player : MonoBehaviour
         speed = 3;
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
-        anim= GetComponent<Animator>();
+
+        anim = GetComponent<Animator>();
     }
   
     private void FixedUpdate()
     {
-        Vector2 nextVec = inputVec *  speed * Time.fixedDeltaTime;  //´ÙÀ½ ³ª¾Æ°¥ ¹æÇâÀÇ Å©±â
-        rigid.MovePosition(rigid.position + nextVec); //+ inputVec ´ë½Å Á¤±ÔÈ­ µîÀÇ ¿¬»êÀ» °ÅÄ£ nextVec»ç¿ë
+        Vector2 nextVec = inputVec *  speed * Time.fixedDeltaTime;  //ë‹¤ìŒ ë‚˜ì•„ê°ˆ ë°©í–¥ì˜ í¬ê¸°
+        rigid.MovePosition(rigid.position + nextVec); //+ inputVec ëŒ€ì‹  ì •ê·œí™” ë“±ì˜ ì—°ì‚°ì„ ê±°ì¹œ nextVecì‚¬ìš©
      
     }
     void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();
-        //Get<T>:ÇÁ·ÎÇÊ¿¡¼­ ¼³Á¤ÇÑ ÄÁÆ®·Ñ Å¸ÀÔ T°ªÀ»(ÇÁ·ÎÇÊ¿¡¼­ Vector2°ªÀ¸·Î ¼³Á¤ÇØÁÖ¾ú´Ù) °¡Á®¿À´Â ÇÔ¼ö
-        //¿©±â¿¡¼± ³ë¸»¶óÀÌÁî¸¦ ÀÌ¹Ì »ç¿ëÇÏ°í ÀÖ±â ‹š¹®¿¡ »©µµµÊ
+        //Get<T>:í”„ë¡œí•„ì—ì„œ ì„¤ì •í•œ ì»¨íŠ¸ë¡¤ íƒ€ì… Tê°’ì„(í”„ë¡œí•„ì—ì„œ Vector2ê°’ìœ¼ë¡œ ì„¤ì •í•´ì£¼ì—ˆë‹¤) ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
+        //ì—¬ê¸°ì—ì„  ë…¸ë§ë¼ì´ì¦ˆë¥¼ ì´ë¯¸ ì‚¬ìš©í•˜ê³  ìˆê¸° Â‹Âšë¬¸ì— ë¹¼ë„ë¨
     }
 
     private void LateUpdate()
     {
+        anim.SetFloat("Speed", inputVec.magnitude);
+
         if (inputVec.x != 0 )
         {
-            //½ºÇÁ¶óÀÌÆ® ÀÎ½ºÅØÅÍÃ¢À» º¸¸é flipX°¡ true , false°ªÀ» °¡Áö´Â °ÍÀ» ¾Ë ¼ö ÀÖ´Ù
+            //ìŠ¤í”„ë¼ì´íŠ¸ ì¸ìŠ¤í…í„°ì°½ì„ ë³´ë©´ flipXê°€ true , falseê°’ì„ ê°€ì§€ëŠ” ê²ƒì„ ì•Œ ìˆ˜ ìˆë‹¤
             //spriter.flipX = true;
-            //¶ó°í ¾²´Â°Ô ¸ÂÁö¸¸ Á¶°Ç½ÄÀ» ±×´ë·Î ³Ö¾îÁÖÀÚ
-            spriter.flipX = inputVec.x < 0; //¿ìÃø Ç×ÀÇ Á¶°Ç½ÄÀº trueÀÌ°í, ÀÌ °ªÀÌ ±×´ë·Î flipX¿¡ Àû¿ëµÈ´Ù
+            //ë¼ê³  ì“°ëŠ”ê²Œ ë§ì§€ë§Œ ì¡°ê±´ì‹ì„ ê·¸ëŒ€ë¡œ ë„£ì–´ì£¼ì
+            spriter.flipX = inputVec.x < 0; //ìš°ì¸¡ í•­ì˜ ì¡°ê±´ì‹ì€ trueì´ê³ , ì´ ê°’ì´ ê·¸ëŒ€ë¡œ flipXì— ì ìš©ëœë‹¤
         }
-
-       
+        Debug.Log(inputVec.magnitude);
     }
 }
