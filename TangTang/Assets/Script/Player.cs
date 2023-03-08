@@ -45,6 +45,6 @@ public class Player : MonoBehaviour
             //라고 쓰는게 맞지만 조건식을 그대로 넣어주자
             spriter.flipX = inputVec.x < 0; //우측 항의 조건식은 true이고, 이 값이 그대로 flipX에 적용된다
         }
-        Debug.Log(inputVec.magnitude);
+       
     }
 }
