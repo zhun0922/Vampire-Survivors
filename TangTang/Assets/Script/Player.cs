@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     {
         Vector2 nextVec = inputVec *  speed * Time.fixedDeltaTime;  //다음 나아갈 방향의 크기
         rigid.MovePosition(rigid.position + nextVec); //+ inputVec 대신 정규화 등의 연산을 거친 nextVec사용
-     
+        
     }
     void OnMove(InputValue value)
     {
