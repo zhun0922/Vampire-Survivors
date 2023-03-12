@@ -30,6 +30,8 @@ public class Reposition : MonoBehaviour
         float dirX = playerDir.x < 0 ? -1 : 1;
         float dirY = playerDir.y < 0 ? -1 : 1;
 
+        
+
         switch (transform.tag)
         {
             case "Ground":
